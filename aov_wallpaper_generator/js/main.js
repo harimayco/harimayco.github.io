@@ -104,7 +104,7 @@ stage.add(layer);
     	});
     	$('#download-image').click(function(){
     		stage.find('Transformer').destroy();
-    		var dataURL = stage.toDataURL();
+    		var dataURL = stage.toDataURL({pixelRatio: 1.5 });
             downloadURI(dataURL, 'aov-wallpaper.png');
     	});
 
