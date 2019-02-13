@@ -8,13 +8,21 @@
   <meta charset="utf-8">
   <title>Arena of Valor Wallpaper Generator free</title>
   <style>
-	.clickable-image > img {
+  	h1{
+  		font-family: 'Staatliches';
+  	}
+	.clickable-image > div > img {
 		cursor:pointer;
 		margin:1px;
 	}
 
-	.clickable-image > img:hover{
+	.clickable-image > div > img:hover{
 		border: 1px solid #000;
+	}
+	.clickable-image  > div{
+		max-height: 300px;
+		overflow-x: hidden;
+    	overflow-y: scroll;
 	}
 </style>
 <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
@@ -41,7 +49,7 @@
 
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body clickable-image" id="bg-wrapper">
-        
+        <div></div>
       </div>
     </div>
   </div>
@@ -55,7 +63,8 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body clickable-image" id="skin-wrapper">
-     
+      	Cari Hero: <input type="text" id="filter-hero" placeholder="masukkan nama hero" />
+     	<div style="margin-top:10px"></div>
       </div>
     </div>
   </div>
@@ -70,7 +79,7 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body" id="text-wrapper">
       	Masukkan Teks: <input type="text" id="text" />
-      	Pilih Warna: <input type="color" id="text-color" name="textcolor" value="#ff0000"><br /><br />
+      	Pilih Warna: <input type="color" id="text-color" name="textcolor" value="#ffc107"><br /><br />
         <button class="btn btn-success" id="tambah-text">Tambah Text</button>
       </div>
     </div>
