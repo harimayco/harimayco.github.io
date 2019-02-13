@@ -10,6 +10,7 @@
   <style>
 	.clickable-image > img {
 		cursor:pointer;
+		margin:1px;
 	}
 
 	.clickable-image > img:hover{
@@ -20,22 +21,73 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
  </head>
 
- <body>
+ <body style="padding:10px">
+ 	<h1 style="text-align:center">AOV Wallpaper Generator</h1>
+ 	<p style="text-align:center">By Rendy Harimayco</p>
+ 	<hr />
  	<div class="row">
  		<div class="col col-md-6">
- 			<h2>Select Background</h2>
- 			<div class='clickable-image' id='bg-wrapper'></div>
- 			<h2>Select Hero</h2>
- 			<div class='clickable-image' id='skin-wrapper'></div>
+ 		
+
+ 			<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Tambah Background
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body clickable-image" id="bg-wrapper">
+        
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Tambah Hero
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body clickable-image" id="skin-wrapper">
+     
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Tambah Teks
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body" id="text-wrapper">
+      	Masukkan Teks: <input type="text" id="text" />
+      	Pilih Warna: <input type="color" id="text-color" name="textcolor" value="#ff0000"><br /><br />
+        <button class="btn btn-success" id="tambah-text">Tambah Text</button>
+      </div>
+    </div>
+  </div>
+</div>
  		</div>
  		<div class="col col-md-6">
- 			<h2 style="text-align:center">Generated</h2>
- 			<div style="width: 500px; height:1000px;margin:auto;border: 1px solid #aaa">
+ 		
+ 			<div style="width: 500px; height:900px;border: 1px solid #aaa">
  				<div id="container"></div>
  			</div>
+ 			<button style="margin:10px" class="btn btn-primary" id="download-image">Download Image</button>
  		</div>
  	</div>
-
+<footer style="text-align:center">
+	*Semua Content diambil dari CDN Garena, kami tidak mengklaim segala isi konten yg ada pada website ini. 
+</footer>
 <script src="https://unpkg.com/konva@2.4.2/konva.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

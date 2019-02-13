@@ -27,7 +27,7 @@ function render_thumbnails(type, container){
 var stage = new Konva.Stage({
   container: 'container',   // id of container <div>
   width: 500,
-  height: 1000
+  height: 900
 });
 
 var active_target;
@@ -66,20 +66,23 @@ stage.on('dragstart click tap', function (e) {
       tr.attachTo(e.target);
       layer.draw();
     });
-	
 
-var simpleText = new Konva.Text({
+
+function add_text(text, color){
+	var simpleText = new Konva.Text({
       x: stage.getWidth() / 2,
       y: 15,
-      text: 'Simple Text',
+      text: text,
       fontSize: 30,
       fontFamily: 'Staatliches',
-      fill: 'green',
+      fill: color,
       draggable: true
     });
 layer.add(simpleText);
 stage.add(layer);
-layer.draw();
+//layer.draw();
+
+}
 
     $(function(){
     	$('.clickable-image > img').click(function(){
@@ -96,10 +99,20 @@ layer.draw();
 
     		add_image(file, baseon);
     	});
+    	$('#tambah-text').click(function(){
+    		add_text($('#text').val(), $('#text-color').val())
+    	});
+    	$('#download-image').click(function(){
+    		stage.find('Transformer').destroy();
+    		var dataURL = stage.toDataURL();
+            downloadURI(dataURL, 'aov-wallpaper.png');
+    	})
+
     });
 
     function add_image(file, baseon = 'width'){
     	var imageObj = new Image();
+    	imageObj.setAttribute('crossOrigin', 'anonymous');
 	    imageObj.onload = function() {
 	    var canvas = stage.attrs;
 	 var imageAspectRatio = imageObj.width / imageObj.height;
@@ -150,3 +163,14 @@ layer.draw();
 	    };
 	    imageObj.src = file;
     }
+
+
+    function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
