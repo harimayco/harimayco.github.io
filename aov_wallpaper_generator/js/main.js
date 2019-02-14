@@ -58,9 +58,13 @@ $('html').keyup(function(e){
 });
 
 stage.on('dragstart click tap', function (e) {
-	active_target = e.target;
+	   activate_transform(e.target);
+});
+
+function activate_transform(target){
+  active_target = target;
       // if click on empty area - remove all transformers
-      if (e.target === stage) {
+      if (target === stage) {
         stage.find('Transformer').destroy();
         layer.draw();
         return;
@@ -71,12 +75,49 @@ stage.on('dragstart click tap', function (e) {
       stage.find('Transformer').destroy();
 
       // create new transformer
-      var tr = new Konva.Transformer();
+      var tr = new Konva.Transformer({
+        anchorStroke: 'red',
+        anchorFill: 'yellow',
+        anchorSize: 20,
+        borderStroke: '#dedede',
+        borderDash: [3, 3],
+        enabledAnchors: ['bottom-right']
+      });
       layer.add(tr);
-      tr.attachTo(e.target);
-      layer.draw();
-    });
 
+
+      var deleteImageObj = new Image();
+      deleteImageObj.setAttribute('crossOrigin', 'anonymous');
+      deleteImageObj.onload = function() {
+
+      const deleteButton = new Konva.Image({
+          x: tr.getWidth(),
+          y: 0,
+          image: deleteImageObj,
+         });
+
+        tr.add(deleteButton);
+        layer.draw();
+
+        tr.on('transform', () => {
+          deleteButton.x(tr.getWidth())
+        });
+
+        deleteButton.on('click tap', () => {
+          tr.destroy();
+          active_target.destroy();
+          layer.draw();
+        })
+      }
+
+
+
+      deleteImageObj.src = 'images/del.png';
+
+      tr.attachTo(target);
+
+      layer.draw();
+}
 
 function add_text(text, color = 'orange', font = 'arial'){
 	var simpleText = new Konva.Text({
@@ -178,7 +219,7 @@ stage.add(layer);
 		yStart = 0;
 	}
 
-	      var yoda = new Konva.Image({
+	      var newImage = new Konva.Image({
 	        x: xStart,
 	        y: yStart,
 	        image: imageObj,
@@ -189,10 +230,15 @@ stage.add(layer);
 	      });
 
 	      // add the shape to the layer
-	      layer.add(yoda);
+	      layer.add(newImage);
 
 	      // add the layer to the stage
 	      stage.add(layer);
+        stage.find('Transformer').destroy();
+        activate_transform(newImage);
+
+       $("#aov-canvas-wrapper").get(0).scrollIntoView();
+
 	    };
 	    imageObj.src = file;
     }
