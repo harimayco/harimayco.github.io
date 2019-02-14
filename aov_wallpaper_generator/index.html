@@ -9,6 +9,7 @@
   <title>Arena of Valor Wallpaper Generator free</title>
 
 <link href="https://fonts.googleapis.com/css?family=Bangers|Black+Ops+One|Luckiest+Guy|Miss+Fajardose|Passion+One|Righteous|Staatliches" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
   <style>
   @font-face {
@@ -50,17 +51,20 @@
   .fb-comment{
   	width:700px;
 	max-width:100%;
-	margin:auto;
+	margin: 10px auto;
+
   }
-	#accordionExample{
+	#left-wrapper{
       	width: 500px;
 	
 	    float: right;
 	    max-width: 100%;
+	        margin-bottom: 15px;
 	}
 	#text-prev-wrapper{
     	white-space: pre-wrap;
 	}
+	.menu-btn{ margin-top: 5px;}
 </style>
  </head>
 
@@ -71,69 +75,62 @@
  	<hr />
  	<div class="row">
  		<div class="col col-md-6">
- 		
+<div id="left-wrapper">
+<p class="accordion" style="text-align:center">
+  <button class="menu-btn btn btn-light" data-toggle="collapse" data-target="#bg-collapse" role="button" aria-expanded="true"><i class="fas fa-image"></i><br />Background</button>
+  <button class="menu-btn btn btn-light" type="button" data-toggle="collapse" data-target="#skin-collapse" aria-expanded="false" ><i class="fas fa-star"></i><br />Hero / Skins</button>
+  <button class="menu-btn btn btn-light" type="button" data-toggle="collapse" data-target="#util-collapse" aria-expanded="false" ><i class="fas fa-magic"></i><br />Aksesoris</button>
+  <button class="menu-btn btn btn-light" type="button" data-toggle="collapse" data-target="#text-collapse" aria-expanded="false"><i class="fas fa-pencil-alt"></i><br />Insert Text</button>
 
- 			<div class="accordion" id="accordionExample" style="margin-bottom:50px">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Tambah Background
-        </button>
-      </h2>
-    </div>
 
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body clickable-image" id="bg-wrapper">
-        <div></div>
+</p>
+<div>
+  <div>
+    <div class="collapse show" id="bg-collapse">
+      <div class="card card-body">
+        <div class="card-body clickable-image" id="bg-wrapper">Pilih Background: <div></div></div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Tambah Hero
-        </button>
-      </h2>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body clickable-image" id="skin-wrapper">
+ 
+    <div class="collapse" id="skin-collapse">
+     <div class="card card-body clickable-image" id="skin-wrapper">
       	Cari Hero: <input type="text" class="form-control" id="filter-hero" placeholder="masukkan nama hero" />
      	<div style="margin-top:10px"></div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Tambah Teks
-        </button>
-      </h2>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body"  id="text-wrapper">
-      	Masukkan Teks: <textarea class="form-control" id="text"></textarea>
-      	Pilih Warna: <input type="color" id="text-color" class="form-control" name="textcolor" value="#000000"> 
-      	<div class="form-inline" style="margin:10px">
-	      	Font: &nbsp; &nbsp;
-	        <select class="form-control" id="text-font"></select>
-	        Align: &nbsp; &nbsp;
-	        <select class="form-control" id="text-align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select>
-	    </div>
-        <div id="text-prev-wrapper"></div>
-        <button class="btn btn-success" id="tambah-text">Tambah Text</button>
+
+    <div class="collapse" id="util-collapse">
+     <div class="card card-body clickable-image" id="util-wrapper">
+     	<div style="margin-top:10px">Utilities</div>
       </div>
     </div>
+
+  	<div class="collapse" id="text-collapse">
+		<div class="card card-body"  id="text-wrapper">
+	      	Masukkan Teks: <textarea class="form-control" id="text"></textarea>
+	      	Pilih Warna: <input type="color" id="text-color" class="form-control" name="textcolor" value="#000000"> 
+	      	<div class="form-inline" style="margin:10px">
+		      	Font: &nbsp; &nbsp;
+		        <select class="form-control" id="text-font"></select> &nbsp; &nbsp;
+		        Align: &nbsp; &nbsp;
+		        <select class="form-control" id="text-align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select>
+		    </div>
+	        <div id="text-prev-wrapper"></div>
+	        <button class="btn btn-success" id="tambah-text">Tambah Text</button>
+	     </div>
+	 </div>
   </div>
 </div>
+<p style="text-align:center">
+<button class="btn btn-primary" type="button" id="download-image" style="margin-top:10px"><i class="fas fa-download"></i><br />Download Wallpaper</button></p>
+</div>
+
  		</div>
  		<div class="col col-md-6">
  			<div id="aov-canvas-wrapper" style="background-color:#fff;">
  				<div id="container"></div>
  			</div>
- 			<button style="margin:10px" class="btn btn-primary" id="download-image">Download Image</button>
+
  		</div>
  		<div class="col col-md-12"><div class="fb-comment"><h3 class="main-title">Berikan saranmu untuk aplikasi ini</h3><div class="fb-comments" data-width="100%" data-numposts="10" data-colorscheme="dark"></div></div></div>
  	</div>

@@ -201,6 +201,13 @@ stage.add(layer);
         var align = $('#text-align').val();
         set_preview_text(text, color, font, align);
       });
+
+      $('.menu-btn').click( function(e) {
+          if($($(this).data('target')).hasClass('show')){
+            return;
+          }
+          $(this).parent().parent().find('.collapse').removeClass('show');
+      });
     });
 
     function set_preview_text(text = '', color = 'black', font = 'arial', align = 'left'){
