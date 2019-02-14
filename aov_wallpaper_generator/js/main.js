@@ -145,7 +145,7 @@ function activate_transform(target){
       layer.draw();
 }
 
-function add_text(text, color = 'orange', font = 'arial'){
+function add_text(text, color = 'orange', font = 'arial', text_align = 'left'){
 	var simpleText = new Konva.Text({
       x: stage.getWidth() / 2,
       y: 15,
@@ -153,7 +153,8 @@ function add_text(text, color = 'orange', font = 'arial'){
       fontSize: 30,
       fontFamily: font,
       fill: color,
-      draggable: true
+      draggable: true,
+      align: text_align
     });
 layer.add(simpleText);
 stage.add(layer);
@@ -177,7 +178,7 @@ stage.add(layer);
     		add_image(file, baseon);
     	});
     	$('#tambah-text').click(function(){
-    		add_text($('#text').val(), $('#text-color').val(), $('#text-font').val())
+    		add_text($('#text').val(), $('#text-color').val(), $('#text-font').val(), $('#text-align').val())
     	});
     	$('#download-image').click(function(){
     		stage.find('Transformer').destroy();
@@ -193,21 +194,22 @@ stage.add(layer);
     		}
     	});
 
-      $('#text, #text-color, #text-font').on('change keyup paste', function(){
+      $('#text, #text-color, #text-font, #text-align').on('change keyup paste', function(){
         var text  = $('#text').val();
         var color = $('#text-color').val();
         var font = $('#text-font').val();
-        set_preview_text(text, color, font);
+        var align = $('#text-align').val();
+        set_preview_text(text, color, font, align);
       });
     });
 
-    function set_preview_text(text = '', color = 'black', font = 'arial'){
+    function set_preview_text(text = '', color = 'black', font = 'arial', align = 'left'){
       if(text == ''){
         $('#text-prev-wrapper').html('');
         return;
       }
 
-      $('#text-prev-wrapper').html('<center>Preview: <br /><span style="font-size:35px;color:'+color+';font-family: \''+font+'\">'+text+'</span></center>');
+      $('#text-prev-wrapper').html('<center>Preview:</center><br /><p style="text-align:'+align+';font-size:35px;color:'+color+';font-family: \''+font+'\">'+text+'</p>');
     }
 
     function add_image(file, baseon = 'width'){

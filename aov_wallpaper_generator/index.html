@@ -47,6 +47,20 @@
   footer{
     color:#fff;
   }
+  .fb-comment{
+  	width:700px;
+	max-width:100%;
+	margin:auto;
+  }
+	#accordionExample{
+      	width: 500px;
+	
+	    float: right;
+	    max-width: 100%;
+	}
+	#text-prev-wrapper{
+    	white-space: pre-wrap;
+	}
 </style>
  </head>
 
@@ -85,7 +99,7 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body clickable-image" id="skin-wrapper">
-      	Cari Hero: <input type="text" id="filter-hero" placeholder="masukkan nama hero" />
+      	Cari Hero: <input type="text" class="form-control" id="filter-hero" placeholder="masukkan nama hero" />
      	<div style="margin-top:10px"></div>
       </div>
     </div>
@@ -99,11 +113,15 @@
       </h2>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body" id="text-wrapper">
-      	Masukkan Teks: <input type="text" id="text" />
-      	Pilih Warna: <input type="color" id="text-color" name="textcolor" value="#000000"> Font: 
-        <select id="text-font"></select><br /><br />
-        <br />
+      <div class="card-body"  id="text-wrapper">
+      	Masukkan Teks: <textarea class="form-control" id="text"></textarea>
+      	Pilih Warna: <input type="color" id="text-color" class="form-control" name="textcolor" value="#000000"> 
+      	<div class="form-inline" style="margin:10px">
+	      	Font: &nbsp; &nbsp;
+	        <select class="form-control" id="text-font"></select>
+	        Align: &nbsp; &nbsp;
+	        <select class="form-control" id="text-align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select>
+	    </div>
         <div id="text-prev-wrapper"></div>
         <button class="btn btn-success" id="tambah-text">Tambah Text</button>
       </div>
@@ -112,19 +130,30 @@
 </div>
  		</div>
  		<div class="col col-md-6">
- 			<div id="aov-canvas-wrapper" style="background-color:#fff;margin: auto;">
+ 			<div id="aov-canvas-wrapper" style="background-color:#fff;">
  				<div id="container"></div>
  			</div>
  			<button style="margin:10px" class="btn btn-primary" id="download-image">Download Image</button>
  		</div>
+ 		<div class="col col-md-12"><div class="fb-comment"><h3 class="main-title">Berikan saranmu untuk aplikasi ini</h3><div class="fb-comments" data-width="100%" data-numposts="10" data-colorscheme="dark"></div></div></div>
  	</div>
 <footer style="text-align:center">
-	*Semua Content diambil dari CDN Garena, kami tidak mengklaim segala isi konten yg ada pada website ini. 
+	*Semua Content diambil dari CDN Garena, kami tidak mengklaim segala isi konten yg ada pada website ini. <br />
+	 <a href='https://www.counters-free.net/'>https://www.counters-free.net</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=b12615cfc149195a149f98901dd33b43432f6cdb'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/488690/t/2"></script>
 </footer>
 <script src="https://unpkg.com/konva@2.4.2/konva.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v3.2';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>
