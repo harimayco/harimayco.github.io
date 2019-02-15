@@ -272,7 +272,7 @@ stage.add(layer);
         stage.find('Transformer').destroy();
         activate_transform(newImage);
 
-       $("#aov-canvas-wrapper").get(0).scrollIntoView();
+       $('html, body').animate({ scrollTop: $('#aov-canvas-wrapper').offset().top - 50   }, 1000);
 
 	    };
 	    imageObj.src = file;
@@ -310,3 +310,34 @@ function dataURLtoBlob(dataurl) {
             document.body.removeChild(link);
             delete link;
         }
+
+
+stage.getContent().addEventListener('touchmove', function(evt) {
+        var touch1 = evt.touches[0];
+        var touch2 = evt.touches[1];
+
+        if(touch1 && touch2 && active_target) {
+            var dist = getDistance({
+                x: touch1.clientX,
+                y: touch1.clientY
+            }, {
+                x: touch2.clientX,
+                y: touch2.clientY
+            });
+
+            if(!lastDist) {
+                lastDist = dist;
+            }
+
+            var scale = active_target.scaleX() * dist / lastDist;
+
+            active_target.scaleX(scale);
+            active_target.scaleY(scale);
+            layer.draw();
+            lastDist = dist;
+        }
+    }, false);
+
+    stage.getContent().addEventListener('touchend', function() {
+        lastDist = 0;
+    }, false);
