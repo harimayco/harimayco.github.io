@@ -18,10 +18,13 @@ var canvas_width = 500;
 var canvas_height = 889;
 var canvas_ratio = 2;
 
+var tr = null;
+var deleteButton = null;
+
 //set cancvas size as device resolution
 if(is_tablet_or_mobile){
-  canvas_width = (screen_width * 0.9);
-  canvas_height = (screen_height * 0.9);
+  canvas_width = (screen_width * 0.8);
+  canvas_height = (screen_height * 0.8);
   canvas_ratio = (screen_ratio+0.5);
 }
 
@@ -101,13 +104,14 @@ function activate_transform(target){
       stage.find('Transformer').destroy();
 
       // create new transformer
-      var tr = new Konva.Transformer({
+      tr = new Konva.Transformer({
         anchorStroke: 'red',
         anchorFill: 'yellow',
         anchorSize: 20,
         borderStroke: '#dedede',
         borderDash: [3, 3],
-        enabledAnchors: ['bottom-right']
+        enabledAnchors: ['bottom-right'],
+        centeredScaling: true
       });
       layer.add(tr);
 
@@ -116,7 +120,7 @@ function activate_transform(target){
       deleteImageObj.setAttribute('crossOrigin', 'anonymous');
       deleteImageObj.onload = function() {
 
-      const deleteButton = new Konva.Image({
+      deleteButton = new Konva.Image({
           x: tr.getWidth(),
           y: 0,
           image: deleteImageObj,
@@ -126,7 +130,8 @@ function activate_transform(target){
         layer.draw();
 
         tr.on('transform', () => {
-          deleteButton.x(tr.getWidth())
+          deleteButton.x(tr.getWidth());
+          //layer.draw();
         });
 
         deleteButton.on('click tap', () => {
@@ -311,11 +316,14 @@ function dataURLtoBlob(dataurl) {
             delete link;
         }
 
-
+ var lastDist = 0;
 stage.getContent().addEventListener('touchmove', function(evt) {
         var touch1 = evt.touches[0];
         var touch2 = evt.touches[1];
+        //console.log(touch1);
 
+
+        //console.log(touch2.clientX);
         if(touch1 && touch2 && active_target) {
             var dist = getDistance({
                 x: touch1.clientX,
@@ -331,8 +339,10 @@ stage.getContent().addEventListener('touchmove', function(evt) {
 
             var scale = active_target.scaleX() * dist / lastDist;
 
+            
             active_target.scaleX(scale);
             active_target.scaleY(scale);
+            deleteButton.x(tr.getWidth());
             layer.draw();
             lastDist = dist;
         }
@@ -341,3 +351,7 @@ stage.getContent().addEventListener('touchmove', function(evt) {
     stage.getContent().addEventListener('touchend', function() {
         lastDist = 0;
     }, false);
+
+    function getDistance(p1, p2) {
+        return Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2));
+    }
