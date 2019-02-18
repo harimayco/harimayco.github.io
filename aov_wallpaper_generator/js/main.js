@@ -253,7 +253,7 @@ stage.add(layer);
         return;
       }
 
-      $('#text-prev-wrapper').html('<center>Preview:</center><br /><p style="text-align:'+align+';font-size:35px;color:'+color+';font-family: \''+font+'\">'+text+'</p>');
+      $('#text-prev-wrapper').html('<center>Preview:</center><br /><p style="text-align:'+align+';font-size:35px;color:'+color+';font-family: \''+font+'\';background-color:#cacaca;padding:10px">'+text+'</p>');
     }
 
     function add_image(file, baseon = 'width'){
