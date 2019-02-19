@@ -257,9 +257,11 @@ stage.add(layer);
     }
 
     function add_image(file, baseon = 'width'){
+      $('#left-wrapper').LoadingOverlay("show", {text: "loading Image...", textResizeFactor: 0.3});
     	var imageObj = new Image();
     	imageObj.setAttribute('crossOrigin', 'anonymous');
 	    imageObj.onload = function() {
+        $('#left-wrapper').LoadingOverlay("hide");
 	    var canvas = stage.attrs;
 	 var imageAspectRatio = imageObj.width / imageObj.height;
 	var canvasAspectRatio = canvas.width / canvas.height;
