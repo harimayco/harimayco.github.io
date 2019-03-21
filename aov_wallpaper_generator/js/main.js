@@ -15,19 +15,29 @@ var screen_width = screen.width;
 var screen_height = screen.height;
 var screen_ratio = window.devicePixelRatio;
 
-//default size (desktop)
-var canvas_width = 500;
-var canvas_height = 889;
-var canvas_ratio = 2;
+const desktop_width = 730;
+const desktop_height = 410.625;
+const desktop_ratio = 3;
+
+//default phone size 
+var initial_canvas_width = 540;
+var initial_canvas_height = 960;
+var initial_canvas_ratio = 2;
 
 var tr = null;
 var deleteButton = null;
 
 //set cancvas size as device resolution
 if(is_tablet_or_mobile){
-  canvas_width = (screen_width * 0.8);
-  canvas_height = (screen_height * 0.8);
-  canvas_ratio = (screen_ratio+0.5);
+  var current_mode = 'mobile';
+  var canvas_width = (screen_width * 0.8);
+  var canvas_height = (screen_height * 0.8);
+  var canvas_ratio = (screen_ratio+0.5);
+}else{ 
+  var current_mode = 'mobile';
+  var canvas_width = initial_canvas_width;
+  var canvas_height = initial_canvas_height;
+  var canvas_ratio = initial_canvas_ratio;
 }
 
 $(function(){
@@ -42,7 +52,53 @@ $(function(){
   render_utils($('#util'), 14);
   //renderfonts
   render_fonts_select($('#text-font'));
+
+  
+
+  if(is_tablet_or_mobile){
+    $('#selected-mode').parent().hide();
+  }else{
+    $('#selected-mode').change(function(){
+      set_mode($(this).val());
+    });
+  }
+  
 });
+
+function set_mode(mode = 'default'){
+  if(mode == 'default'){
+    mode = current_mode;
+  }
+
+  if(mode == 'desktop'){
+    set_desktop();
+  }else{
+    set_mobile();
+  }
+
+}
+
+function set_desktop(){
+  $('.main .canvas-section').removeClass('col-md-6').addClass('col-md-12');
+  $('.main .tool-section').removeClass('col-md-6').addClass('col-md-8');
+  stage.width(desktop_width);
+  stage.height(desktop_height);
+  canvas_ratio = desktop_ratio;
+  stage.draw();
+  $('#aov-canvas-wrapper').width(desktop_width).height(desktop_height);
+  current_mode = 'desktop';
+}
+
+function set_mobile(){
+    $('.main .canvas-section').removeClass('col-md-12').addClass('col-md-6');
+    $('.main .tool-section').removeClass('col-md-8').addClass('col-md-6');
+    stage.width(initial_canvas_width);
+    stage.height(initial_canvas_height);
+    canvas_ratio = initial_canvas_ratio;
+    stage.draw();
+    $('#aov-canvas-wrapper').width(initial_canvas_width).height(initial_canvas_height);
+    current_mode = 'mobile';
+}
 
 function render_custom_utils(container){
   var html = '';
@@ -199,7 +255,12 @@ stage.add(layer);
     		var baseon = 'width';
     		if(sub == 'bg'){
     			ext = '.jpg';
-    			baseon = 'height';
+          if(current_mode == 'desktop'){
+            baseon = 'width';
+          }else{
+            baseon = 'height';
+          }
+    			
     		}
 
         var file = '';
@@ -210,7 +271,7 @@ stage.add(layer);
         }else{
           file = garena_cdn + hero +'/'+ sub +'/'+number+ext;
         }
-    		
+    		console.log(baseon);
 
     		add_image(file, baseon);
     	});
@@ -257,19 +318,19 @@ stage.add(layer);
     }
 
     function add_image(file, baseon = 'width'){
-      $('#left-wrapper').LoadingOverlay("show", {text: "loading Image...", textResizeFactor: 0.3});
+      $('#left-wrapper').LoadingOverlay("show", {text: "Loading Image...", textResizeFactor: 0.3});
     	var imageObj = new Image();
     	imageObj.setAttribute('crossOrigin', 'anonymous');
 	    imageObj.onload = function() {
         $('#left-wrapper').LoadingOverlay("hide");
-	    var canvas = stage.attrs;
+	 var canvas = stage.attrs;
 	 var imageAspectRatio = imageObj.width / imageObj.height;
 	var canvasAspectRatio = canvas.width / canvas.height;
 	var renderableHeight, renderableWidth, xStart, yStart;
 
 	// If image's aspect ratio is less than canvas's we fit on height
 	// and place the image centrally along width
-	if(imageAspectRatio < canvasAspectRatio || baseon =='height') {
+	if(imageAspectRatio < canvasAspectRatio || baseon =='height' ) {
 		renderableHeight = canvas.height;
 		renderableWidth = imageObj.width * (renderableHeight / imageObj.height);
 		xStart = (canvas.width - renderableWidth) / 2;
