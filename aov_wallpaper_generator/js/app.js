@@ -541,13 +541,9 @@ $(function() {
 
 
 
-    if (is_tablet_or_mobile) {
-        $('#selected-mode').parent().hide();
-    } else {
-        $('#selected-mode').change(function() {
-            set_mode($(this).val());
-        });
-    }
+    $('#selected-mode').change(function() {
+        set_mode($(this).val());
+    });
 
 });
 
