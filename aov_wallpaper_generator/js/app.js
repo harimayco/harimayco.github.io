@@ -1,3 +1,7 @@
+import Konva from 'konva';
+window.$ = window.jQuery = require('jquery');
+import 'bootstrap';
+import 'gasparesganga-jquery-loading-overlay';
 
 
 const garena_wp = 'https://cdngarenanow-a.akamaihd.net/webmain/static/resource/wallpaper/';
