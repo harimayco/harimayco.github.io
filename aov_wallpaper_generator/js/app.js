@@ -493,9 +493,9 @@ window.mobileAndTabletcheck = function() {
 };
 
 var is_tablet_or_mobile = mobileAndTabletcheck();
-var screen_width = screen.width;
-var screen_height = screen.height;
-var screen_ratio = window.devicePixelRatio;
+const screen_width = (screen.width * 0.8);
+const screen_height = (screen.height * 0.8);
+const screen_ratio = (window.devicePixelRatio + 0.5);
 
 const desktop_width = 730;
 const desktop_height = 410.625;
@@ -512,9 +512,9 @@ var deleteButton = null;
 //set cancvas size as device resolution
 if (is_tablet_or_mobile) {
     var current_mode = 'mobile';
-    var canvas_width = (screen_width * 0.8);
-    var canvas_height = (screen_height * 0.8);
-    var canvas_ratio = (screen_ratio + 0.5);
+    var canvas_width = screen_width;
+    var canvas_height = screen_height;
+    var canvas_ratio = screen_ratio;
 } else {
     var current_mode = 'mobile';
     var canvas_width = initial_canvas_width;
@@ -574,11 +574,19 @@ function set_desktop() {
 function set_mobile() {
     $('.main .canvas-section').removeClass('col-md-12').addClass('col-md-6');
     $('.main .tool-section').removeClass('col-md-8').addClass('col-md-6');
-    stage.width(initial_canvas_width);
-    stage.height(initial_canvas_height);
-    canvas_ratio = initial_canvas_ratio;
+    if(is_tablet_or_mobile){
+        stage.width(screen_width);
+        stage.height(screen_height);
+        canvas_ratio = screen_ratio;
+    }else{
+        stage.width(initial_canvas_width);
+        stage.height(initial_canvas_height);
+        canvas_ratio = initial_canvas_ratio;
+    }
+    console.log(screen_width);
+    console.log(screen_height);
     stage.draw();
-    $('#aov-canvas-wrapper').width(initial_canvas_width).height(initial_canvas_height);
+    $('#aov-canvas-wrapper').width(stage.width()).height(stage.height());
     current_mode = 'mobile';
 }
 
