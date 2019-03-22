@@ -854,7 +854,25 @@ $(function() {
         }
         $(this).parent().parent().find('.collapse').removeClass('show');
     });
+
+    $('#custom-image').on('change', function(e){
+        readUrl(this);
+    });
 });
+
+function readUrl(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      add_image(e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
 
 function set_preview_text(text = '', color = 'black', font = 'arial', align = 'left') {
     if (text == '') {
