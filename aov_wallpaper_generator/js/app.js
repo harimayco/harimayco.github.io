@@ -508,6 +508,7 @@ const initial_canvas_ratio = 2;
 
 var tr = null;
 var deleteButton = null;
+var flipButton = null;
 
 //set cancvas size as device resolution
 if (is_tablet_or_mobile) {
@@ -631,15 +632,15 @@ function render_fonts_select(container) {
 
 
 // first we need to create a stage
-var stage = new Konva.Stage({
+window.stage = new Konva.Stage({
     container: 'container', // id of container <div>
     width: canvas_width,
     height: canvas_height
 });
 
-var active_target;
+window.active_target = null;
 // then create layer
-var layer = new Konva.Layer();
+window.layer = new Konva.Layer();
 
 // draw the image
 layer.draw();
@@ -657,6 +658,20 @@ $('html').keyup(function(e) {
 stage.on('dragstart click tap', function(e) {
     activate_transform(e.target);
 });
+
+window.flipHorizontal = function(){
+    var width = active_target.getWidth();
+    active_target.scaleX(active_target.scaleX() * -1);
+    layer.draw();
+    if(active_target.getOffsetX() > 0 ){
+        active_target.setOffsetX(0);
+    }else{
+        active_target.setOffsetX(width);
+    }
+
+    layer.draw();
+    activate_transform(active_target);
+}
 
 function activate_transform(target) {
     active_target = target;
@@ -707,11 +722,52 @@ function activate_transform(target) {
             active_target.destroy();
             layer.draw();
         })
+        deleteButton.on('mouseenter', function () {
+            stage.container().style.cursor = 'pointer';
+        });
+        deleteButton.on('mouseleave', function () {
+            stage.container().style.cursor = 'default';
+        });
     }
 
 
 
     deleteImageObj.src = 'images/del.png';
+
+    tr.attachTo(target);
+
+    var flipImageObj = new Image();
+    flipImageObj.setAttribute('crossOrigin', 'anonymous');
+    flipImageObj.onload = function() {
+
+        flipButton = new Konva.Image({
+            x: 0,
+            y: 0,
+            image: flipImageObj,
+        });
+
+        tr.add(flipButton);
+        layer.draw();
+
+        tr.on('transform', () => {
+            flipButton.x(0);
+            //layer.draw();
+        });
+
+        flipButton.on('click tap', () => {
+            flipHorizontal();
+        });
+        flipButton.on('mouseenter', function () {
+            stage.container().style.cursor = 'pointer';
+        });
+        flipButton.on('mouseleave', function () {
+            stage.container().style.cursor = 'default';
+        });
+    }
+
+
+
+    flipImageObj.src = 'images/flip.png';
 
     tr.attachTo(target);
 
