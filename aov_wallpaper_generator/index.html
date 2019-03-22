@@ -34,10 +34,16 @@
   }
 
   body{
-    background-color: #070d1d;
-    background-image: url('images/lumbur.jpeg');
+    background-color: #000209;
+    background-image: url('images/bg.jpg');
     background-repeat: no-repeat;
-    
+    background-size: contain;
+  }
+  @media only screen and (max-width: 768px) {
+  	body{
+		background-size: unset;
+		background-position-x: right;
+	}
   }
 
   .main-title{
@@ -71,6 +77,9 @@
 	.menu-btn{ margin-top: 5px;min-width:120px;}
   #aov-canvas-wrapper{
     margin:auto !important;
+  }
+  #ghcard-harimayco-1{
+  	max-width:100%;
   }
 </style>
  </head>
