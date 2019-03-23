@@ -840,6 +840,17 @@ $(function() {
         }
     });
 
+    $('#filter-bg').on('change keyup paste', function() {
+        if ($(this).val() === '') {
+            $('#bg-wrapper > div > img').show();
+        } else {
+            $('#bg-wrapper > div > img').hide();
+            $('#bg-wrapper > div > img').filter(function() {
+                return $(this).attr('title').toLowerCase().includes($('#filter-bg').val());
+            }).show();
+        }
+    });
+
     $('#text, #text-color, #text-font, #text-align').on('change keyup paste', function() {
         var text = $('#text').val();
         var color = $('#text-color').val();
