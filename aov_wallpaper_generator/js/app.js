@@ -802,7 +802,7 @@ $(function() {
         if (sub == 'bg') {
             ext = '.jpg';
             if (current_mode == 'desktop') {
-                baseon = 'width';
+                baseon = 'contains';
             } else {
                 baseon = 'height';
             }
@@ -817,7 +817,7 @@ $(function() {
         } else {
             file = garena_cdn + hero + '/' + sub + '/' + number + ext;
         }
-        console.log(baseon);
+        //console.log(baseon);
 
         add_image(file, baseon);
     });
@@ -930,6 +930,20 @@ function add_image(file, baseon = 'width') {
         else {
             renderableHeight = canvas.height;
             renderableWidth = canvas.width;
+            xStart = 0;
+            yStart = 0;
+        }
+
+        if(baseon == 'contains'){
+            if(renderableWidth < canvas.width){
+                renderableHeight = renderableHeight * (canvas.width / renderableWidth)
+                renderableWidth = canvas.width;
+            }
+
+            if(renderableHeight < canvas.height){
+                renderableWidth = renderableWidth * (canvas.height / renderableHeight);
+                renderableHeight = canvas.height;
+            }
             xStart = 0;
             yStart = 0;
         }
