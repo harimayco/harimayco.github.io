@@ -83,6 +83,7 @@ ul, li {
 body {
 	background: #707070 url(../img/bg.png) repeat;
     background-blend-mode: multiply;
+    background-size: contain;
 } 
 .wrapper {
 	margin: 0; padding: 0;
