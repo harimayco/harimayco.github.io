@@ -885,12 +885,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 /* Retina screens patterns */
 @media (-webkit-min-device-pixel-ratio: 2),  (min-resolution: 192dpi) { 
-    body {
-		background: #b9babe url("../img/body-bg%402x.png") repeat;
-	} 
-	.container, .site_nav {
-		background: url("../img/container-bg%402x.png");
-	}
+
 	footer {
 		background: #f0f4f2 url("../img/contact-bg%402x.png") repeat;
 
