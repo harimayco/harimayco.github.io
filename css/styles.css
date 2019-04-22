@@ -894,3 +894,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 		background: #dfdcdf url("../img/form-bg%402x.png") repeat;
 	}
 }
+
+.progressbar-inner {
+    background-color: #ff0000eb;
+}
