@@ -44,7 +44,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
       <div className="clay-container">
         
         {/* Header */}
-        <div className="clay-section-header">
+        <div className="clay-section-header clay-reveal">
           <div className="clay-badge clay-badge-teal" style={{ marginBottom: '12px' }}>
             <MessageSquare size={14} />
             <span>Contact & Collaboration</span>
@@ -61,7 +61,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             
             {/* Primary Email Clay Box */}
-            <div className="clay-card clay-card-blue">
+            <div className="clay-card clay-card-blue clay-reveal-left delay-1">
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
                 <div className="clay-icon on-colored">
                   <Mail size={26} color="#FFFFFF" />
@@ -111,9 +111,9 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
             </div>
 
             {/* Location & Social Box */}
-            <div className="clay-card">
+            <div className="clay-card clay-reveal-left delay-2">
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
-                <div className="clay-icon clay-icon-sm clay-icon-coral">
+                <div className="clay-icon clay-icon-sm clay-icon-green">
                   <MapPin size={20} />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
           </div>
 
           {/* Right: Interactive Message Form */}
-          <div className="clay-card">
+          <div className="clay-card clay-reveal-right delay-1">
             <h3 style={{ fontSize: '20px', fontWeight: 900, marginBottom: '8px', color: 'var(--text-heading)' }}>
               Send a Direct Message
             </h3>
@@ -178,12 +178,15 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '6px' }}>
+                <label htmlFor="contact-name" style={{ display: 'block', fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '6px' }}>
                   Full Name
                 </label>
                 <input
+                  id="contact-name"
+                  name="name"
                   type="text"
                   required
+                  autoComplete="name"
                   placeholder="e.g. Alex Morgan"
                   className="clay-input"
                   value={formState.name}
@@ -192,12 +195,15 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '6px' }}>
+                <label htmlFor="contact-email" style={{ display: 'block', fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '6px' }}>
                   Your Email Address
                 </label>
                 <input
+                  id="contact-email"
+                  name="email"
                   type="email"
                   required
+                  autoComplete="email"
                   placeholder="name@company.com"
                   className="clay-input"
                   value={formState.email}
@@ -206,10 +212,12 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '6px' }}>
+                <label htmlFor="contact-message" style={{ display: 'block', fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '6px' }}>
                   Project Scope or Message
                 </label>
                 <textarea
+                  id="contact-message"
+                  name="message"
                   required
                   rows={4}
                   placeholder="Share a brief overview of your project requirements, target timeline, or inquiry..."

@@ -9,7 +9,7 @@ export const About: React.FC = () => {
       <div className="clay-container">
         
         {/* Section Header */}
-        <div className="clay-section-header">
+        <div className="clay-section-header clay-reveal">
           <div className="clay-badge clay-badge-purple" style={{ marginBottom: '12px' }}>
             <Terminal size={14} />
             <span>Engineering Background</span>
@@ -21,7 +21,7 @@ export const About: React.FC = () => {
         </div>
 
         {/* Signature Steve Jobs Quote Card */}
-        <div className="quote-card">
+        <div className="quote-card clay-reveal-left delay-1">
           <div className="quote-icon-bg">
             <Quote size={140} />
           </div>
@@ -37,7 +37,7 @@ export const About: React.FC = () => {
         <div className="clay-grid-2" style={{ alignItems: 'start', marginBottom: '32px' }}>
           
           {/* Left Column: Bio Narrative */}
-          <div className="clay-card">
+          <div className="clay-card clay-reveal-left delay-2">
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
               <div className="clay-icon clay-icon-blue">
                 <Code2 size={28} />
@@ -63,7 +63,7 @@ export const About: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             
             {/* Quick Contact Card */}
-            <div className="clay-card">
+            <div className="clay-card clay-reveal-right delay-2">
               <h3 style={{ fontSize: '18px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-heading)' }}>
                 Quick Details
               </h3>
@@ -115,7 +115,7 @@ export const About: React.FC = () => {
             </div>
 
             {/* Pillar Card: Mobile & Backend */}
-            <div className="clay-card clay-card-teal" style={{ color: '#FFFFFF' }}>
+            <div className="clay-card clay-card-teal clay-reveal-right delay-3" style={{ color: '#FFFFFF' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '12px' }}>
                 <div className="clay-icon on-colored" style={{ width: '48px', height: '48px' }}>
                   <Smartphone size={24} color="#FFFFFF" />

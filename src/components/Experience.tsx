@@ -8,7 +8,7 @@ export const Experience: React.FC = () => {
       <div className="clay-container">
         
         {/* Section Header */}
-        <div className="clay-section-header">
+        <div className="clay-section-header clay-reveal">
           <div className="clay-badge clay-badge-coral" style={{ marginBottom: '12px' }}>
             <Briefcase size={14} />
             <span>Career History & Background</span>
@@ -24,7 +24,7 @@ export const Experience: React.FC = () => {
           
           {/* Column 1: Work Experience */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
+            <div className="clay-reveal-left delay-1" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
               <div className="clay-icon clay-icon-sm clay-icon-blue">
                 <Building2 size={20} />
               </div>
@@ -33,7 +33,11 @@ export const Experience: React.FC = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               {EXPERIENCES_DATA.map((exp, idx) => (
-                <div key={idx} className="clay-card">
+                <div
+                  key={idx}
+                  className="clay-card clay-reveal-left"
+                  style={{ '--reveal-delay': `${0.15 + idx * 0.12}s` } as React.CSSProperties}
+                >
                   {/* Period badge */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
                     <span className="clay-badge clay-badge-blue" style={{ fontSize: '12px' }}>
@@ -85,7 +89,7 @@ export const Experience: React.FC = () => {
 
           {/* Column 2: Education */}
           <div id="education">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
+            <div className="clay-reveal-right delay-1" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
               <div className="clay-icon clay-icon-sm clay-icon-green">
                 <GraduationCap size={20} />
               </div>
@@ -94,7 +98,11 @@ export const Experience: React.FC = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               {EDUCATION_DATA.map((edu, idx) => (
-                <div key={idx} className="clay-card">
+                <div
+                  key={idx}
+                  className="clay-card clay-reveal-right"
+                  style={{ '--reveal-delay': `${0.15 + idx * 0.12}s` } as React.CSSProperties}
+                >
                   {/* Period badge */}
                   <div style={{ marginBottom: '12px' }}>
                     <span className="clay-badge clay-badge-green" style={{ fontSize: '12px' }}>

@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
       <div className="clay-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         
         {/* Clay Avatar with 3D ring & status badge */}
-        <div className="hero-avatar-wrap">
+        <div className="hero-avatar-wrap clay-reveal-pop">
           <img
             src={PERSONAL_INFO.avatar}
             alt={PERSONAL_INFO.name}
@@ -33,22 +33,22 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Live Availability Badge */}
-        <div className="status-indicator">
+        <div className="status-indicator clay-reveal delay-1">
           <span className="status-dot"></span>
           <span>Available for Fullstack Engineering & Contracts</span>
         </div>
 
         {/* Headings */}
-        <h1 className="hero-title">
+        <h1 className="hero-title clay-reveal delay-2">
           {PERSONAL_INFO.headline}
         </h1>
 
-        <p className="hero-subtitle">
+        <p className="hero-subtitle clay-reveal delay-3">
           Hello, I am <strong>{PERSONAL_INFO.name}</strong> — {PERSONAL_INFO.tagline}
         </p>
 
         {/* Action Buttons */}
-        <div className="hero-cta-group">
+        <div className="hero-cta-group clay-reveal delay-4">
           <button
             type="button"
             className="clay-btn clay-btn-blue"
@@ -82,7 +82,11 @@ export const Hero: React.FC = () => {
         {/* Stat Cards Row */}
         <div className="hero-stats-grid">
           {PERSONAL_INFO.stats.map((stat, idx) => (
-            <div key={idx} className="clay-stat-card">
+            <div
+              key={idx}
+              className="clay-stat-card clay-reveal"
+              style={{ '--reveal-delay': `${0.35 + idx * 0.08}s` } as React.CSSProperties}
+            >
               <div className="clay-stat-num">{stat.number}</div>
               <div className="clay-stat-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
                 <CheckCircle2 size={14} color="#059669" />

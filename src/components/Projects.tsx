@@ -4,10 +4,14 @@ import { GithubIcon } from './Icons'
 import { PROJECTS_DATA, Project } from '../data/portfolioData'
 import { ProjectModal } from './ProjectModal'
 import { playClayClick } from '../utils/audioFeedback'
+import { useScrollReveal } from '../utils/useScrollReveal'
 
 export const Projects: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('all')
   const [activeProject, setActiveProject] = useState<Project | null>(null)
+
+  // Re-observe cards when filter tab changes
+  useScrollReveal([selectedFilter])
 
   const filters = [
     { id: 'all', label: 'All Projects' },
@@ -35,7 +39,7 @@ export const Projects: React.FC = () => {
       <div className="clay-container">
         
         {/* Section Header */}
-        <div className="clay-section-header">
+        <div className="clay-section-header clay-reveal">
           <div className="clay-badge clay-badge-blue" style={{ marginBottom: '12px' }}>
             <FolderGit2 size={14} />
             <span>Selected Works</span>
@@ -47,7 +51,7 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Filter Pills */}
-        <div className="filter-container">
+        <div className="filter-container clay-reveal delay-1">
           {filters.map((f) => (
             <button
               key={f.id}
@@ -64,19 +68,16 @@ export const Projects: React.FC = () => {
         <div className="clay-grid-3">
           {filteredProjects.map((project, idx) => {
             // Subtle rotation for playfulness per DESIGN.md: -1.5deg, 0deg, 1.5deg
-            const rotation = idx % 3 === 0 ? '-1deg' : idx % 3 === 2 ? '1deg' : '0deg'
+            const rotation = idx % 3 === 0 ? '-1.5deg' : idx % 3 === 2 ? '1.5deg' : '0deg'
 
             return (
               <div
                 key={project.id}
-                className="project-card"
-                style={{ transform: `rotate(${rotation})` }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px) rotate(0deg)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = `rotate(${rotation})`
-                }}
+                className="project-card clay-reveal"
+                style={{
+                  '--card-rot': rotation,
+                  '--reveal-delay': `${(idx % 3) * 0.12}s`
+                } as React.CSSProperties}
               >
                 {/* Image Wrapper */}
                 <div
@@ -160,7 +161,7 @@ export const Projects: React.FC = () => {
 
         {/* GitHub Callout Card */}
         <div
-          className="clay-card clay-card-yellow"
+          className="clay-card clay-card-yellow clay-reveal delay-2"
           style={{ marginTop: '48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

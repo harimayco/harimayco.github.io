@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /PDFActions/
+Allow: /aov_wallpaper_generator/
+
+Sitemap: https://harimayco.github.io/sitemap.xml

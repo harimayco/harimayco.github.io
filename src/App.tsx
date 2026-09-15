@@ -8,11 +8,16 @@ import { Experience } from './components/Experience'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { ThemeTone } from './components/ThemeSwitcher'
+import { AnimatedBackground } from './components/AnimatedBackground'
+import { useScrollReveal } from './utils/useScrollReveal'
 import { Check } from 'lucide-react'
 
 export const App: React.FC = () => {
   const [currentTone, setCurrentTone] = useState<ThemeTone>('lavender')
   const [toastMessage, setToastMessage] = useState<string | null>(null)
+
+  // Initialize global IntersectionObserver for smooth scroll entrance reveals
+  useScrollReveal([currentTone])
 
   const showToast = (msg: string) => {
     setToastMessage(msg)
@@ -23,11 +28,8 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-wrapper">
-      {/* Background Soft Blobs (2-4 per page as specified in DESIGN.md) */}
-      <div className="clay-blob clay-blob-1" />
-      <div className="clay-blob clay-blob-2" />
-      <div className="clay-blob clay-blob-3" />
-      <div className="clay-blob clay-blob-4" />
+      {/* Dynamic Animated Clay Background with Morphing Blobs & 3D Micro-Shapes */}
+      <AnimatedBackground currentTone={currentTone} />
 
       {/* Sticky Floating Navbar */}
       <Navbar currentTone={currentTone} onSelectTone={setCurrentTone} />

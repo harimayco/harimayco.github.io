@@ -11,12 +11,12 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="site-footer">
-      <div className="clay-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+      <div className="clay-container clay-reveal" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
         
         {/* Back to top clay button */}
         <button
           type="button"
-          className="clay-btn clay-btn-white clay-btn-sm clay-pill"
+          className="clay-btn clay-btn-white clay-btn-sm clay-pill clay-reveal-pop"
           onClick={scrollToTop}
           title="Back to Top"
         >

@@ -619,48 +619,260 @@ body.theme-peach { --bg-page: var(--bg-peach); }
 }
 
 /* ==========================================================================
-   BACKGROUND BLOBS (2-4 per page, organic blurred depth)
+   ANIMATED BACKGROUND & TACTILE CLAY SHAPES
    ========================================================================== */
 
-.clay-blob {
-  position: absolute;
-  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-  filter: blur(48px);
+@keyframes clayMorph {
+  0% {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+  25% {
+    border-radius: 45% 55% 50% 50% / 40% 45% 55% 60%;
+  }
+  50% {
+    border-radius: 70% 30% 60% 40% / 60% 50% 50% 40%;
+  }
+  75% {
+    border-radius: 50% 50% 40% 60% / 35% 65% 35% 65%;
+  }
+  100% {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+}
+
+@keyframes clayFloat1 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(60px, -45px, 0) rotate(8deg) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-35px, 65px, 0) rotate(-7deg) scale(0.95);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes clayFloat2 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(-70px, 55px, 0) rotate(-10deg) scale(0.94);
+  }
+  66% {
+    transform: translate3d(45px, -35px, 0) rotate(8deg) scale(1.05);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes clayFloat3 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(50px, 45px, 0) rotate(7deg) scale(1.05);
+  }
+  66% {
+    transform: translate3d(-55px, -50px, 0) rotate(-9deg) scale(0.96);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes clayFloat4 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(-45px, -55px, 0) rotate(-8deg) scale(0.95);
+  }
+  66% {
+    transform: translate3d(55px, 35px, 0) rotate(10deg) scale(1.06);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes clayBob {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -20px, 0) rotate(6deg);
+  }
+}
+
+@keyframes clayBobReverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, 18px, 0) rotate(-6deg);
+  }
+}
+
+@keyframes claySparkleSpin {
+  0% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.15) rotate(90deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(0.9) rotate(180deg);
+    opacity: 0.5;
+  }
+}
+
+.animated-bg-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.22;
+  contain: strict;
 }
 
-.clay-blob-1 {
+.animated-bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ambient Diffuse Blobs */
+.animated-blob {
+  position: absolute;
+  filter: blur(65px);
+  pointer-events: none;
+  opacity: 0.26;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  animation: clayMorph 14s ease-in-out infinite alternate;
+  will-change: transform, border-radius;
+}
+
+.animated-blob-1 {
+  width: 520px;
+  height: 520px;
+  top: -80px;
+  left: -100px;
+  background: var(--clay-purple);
+  animation: clayMorph 16s ease-in-out infinite alternate, clayFloat1 26s ease-in-out infinite alternate;
+}
+
+.animated-blob-2 {
   width: 480px;
   height: 480px;
-  top: 5%;
-  left: -120px;
-  background: var(--clay-purple);
-}
-
-.clay-blob-2 {
-  width: 420px;
-  height: 420px;
-  top: 35%;
-  right: -100px;
+  top: 30%;
+  right: -120px;
   background: var(--clay-blue);
+  animation: clayMorph 18s ease-in-out infinite alternate, clayFloat2 28s ease-in-out infinite alternate;
 }
 
-.clay-blob-3 {
-  width: 460px;
-  height: 460px;
-  top: 65%;
+.animated-blob-3 {
+  width: 500px;
+  height: 500px;
+  top: 60%;
   left: -80px;
   background: var(--clay-green);
+  animation: clayMorph 15s ease-in-out infinite alternate, clayFloat3 24s ease-in-out infinite alternate;
 }
 
-.clay-blob-4 {
-  width: 400px;
-  height: 400px;
-  bottom: 5%;
+.animated-blob-4 {
+  width: 460px;
+  height: 460px;
+  bottom: -60px;
   right: -80px;
   background: var(--clay-yellow);
+  animation: clayMorph 20s ease-in-out infinite alternate, clayFloat4 30s ease-in-out infinite alternate;
+}
+
+.animated-blob-5 {
+  width: 380px;
+  height: 380px;
+  top: 45%;
+  left: 35%;
+  background: var(--clay-coral);
+  opacity: 0.16;
+  animation: clayMorph 22s ease-in-out infinite alternate, clayFloat1 32s ease-in-out infinite alternate-reverse;
+}
+
+/* 3D Tactile Micro-Clay Floating Shapes */
+.clay-floating-shape {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.clay-micro-sphere {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 55%);
+}
+
+.clay-micro-sphere.purple {
+  background-color: var(--clay-purple);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 5px 0 0 var(--shadow-purple), 0 10px 18px rgba(109, 40, 217, 0.22);
+}
+
+.clay-micro-sphere.blue {
+  background-color: var(--clay-blue);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 5px 0 0 var(--shadow-blue), 0 10px 18px rgba(29, 78, 216, 0.22);
+}
+
+.clay-micro-sphere.teal {
+  background-color: var(--clay-teal);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 5px 0 0 var(--shadow-teal), 0 10px 18px rgba(15, 118, 110, 0.22);
+}
+
+.clay-micro-sphere.coral {
+  background-color: var(--clay-coral);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 5px 0 0 var(--shadow-coral), 0 10px 18px rgba(190, 18, 60, 0.22);
+}
+
+.clay-micro-pill {
+  border-radius: 999px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 65%);
+}
+
+.clay-micro-pill.yellow {
+  background-color: var(--clay-yellow);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 4px 0 0 var(--shadow-yellow), 0 8px 16px rgba(180, 83, 9, 0.2);
+}
+
+.clay-micro-pill.green {
+  background-color: var(--clay-green);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 4px 0 0 var(--shadow-green), 0 8px 16px rgba(5, 150, 105, 0.2);
+}
+
+.clay-micro-sparkle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 6px rgba(29, 78, 216, 0.2));
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animated-blob,
+  .clay-floating-shape {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -731,5 +943,117 @@ body.theme-peach { --bg-page: var(--bg-peach); }
   }
   .clay-section-title {
     font-size: 30px;
+  }
+}
+
+/* ==========================================================================
+   SCROLL ENTRANCE & REVEAL ANIMATIONS
+   ========================================================================== */
+
+.clay-reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.clay-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.clay-reveal-pop {
+  opacity: 0;
+  transform: scale(0.82);
+  transition:
+    opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.clay-reveal-pop.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.clay-reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.clay-reveal-left.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.clay-reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.clay-reveal-right.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Gamified Skill Progress Fill on Reveal */
+.clay-card.clay-reveal:not(.is-revealed) .clay-fill {
+  width: 0% !important;
+}
+
+/* Stagger delay classes for convenience */
+.delay-1 { --reveal-delay: 0.08s; }
+.delay-2 { --reveal-delay: 0.16s; }
+.delay-3 { --reveal-delay: 0.24s; }
+.delay-4 { --reveal-delay: 0.32s; }
+.delay-5 { --reveal-delay: 0.40s; }
+.delay-6 { --reveal-delay: 0.48s; }
+
+/* Keep active card rotations working with reveal */
+.project-card.clay-reveal {
+  transform: translateY(28px) scale(0.97) rotate(0deg);
+}
+
+.project-card.clay-reveal.is-revealed {
+  transform: translateY(0) scale(1) rotate(var(--card-rot, 0deg));
+}
+
+.project-card.clay-reveal.is-revealed:hover {
+  transform: translateY(-4px) scale(1.01) rotate(0deg);
+}
+
+@media (max-width: 900px) {
+  .project-card.clay-reveal.is-revealed,
+  .project-card.clay-reveal.is-revealed:hover {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .clay-reveal,
+  .clay-reveal-pop,
+  .clay-reveal-left,
+  .clay-reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .clay-card.clay-reveal:not(.is-revealed) .clay-fill {
+    width: auto !important;
   }
 }

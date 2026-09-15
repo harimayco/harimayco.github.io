@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { Cpu, Server, Layout, Smartphone, ShieldCheck, Palette } from 'lucide-react'
 import { SKILLS_DATA, Skill } from '../data/portfolioData'
 import { playClayClick } from '../utils/audioFeedback'
+import { useScrollReveal } from '../utils/useScrollReveal'
 
 export const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all')
+
+  // Re-observe cards when category filter changes
+  useScrollReveal([activeCategory])
 
   const categories = [
     { id: 'all', label: 'All Competencies', icon: Cpu },
@@ -49,7 +53,7 @@ export const Skills: React.FC = () => {
       <div className="clay-container">
         
         {/* Header */}
-        <div className="clay-section-header">
+        <div className="clay-section-header clay-reveal">
           <div className="clay-badge clay-badge-green" style={{ marginBottom: '12px' }}>
             <Cpu size={14} />
             <span>Technical Toolchain</span>
@@ -61,7 +65,7 @@ export const Skills: React.FC = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="filter-container">
+        <div className="filter-container clay-reveal delay-1">
           {categories.map((cat) => {
             const Icon = cat.icon
             const isActive = activeCategory === cat.id
@@ -83,7 +87,14 @@ export const Skills: React.FC = () => {
         {/* Skills Grid */}
         <div className="clay-grid-3">
           {filteredSkills.map((skill, idx) => (
-            <div key={idx} className="clay-card clay-card-interactive" style={{ padding: '22px' }}>
+            <div
+              key={`${activeCategory}-${idx}`}
+              className="clay-card clay-card-interactive clay-reveal"
+              style={{
+                padding: '22px',
+                '--reveal-delay': `${(idx % 6) * 0.07}s`
+              } as React.CSSProperties}
+            >
               
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
                 <h3 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--text-heading)' }}>
