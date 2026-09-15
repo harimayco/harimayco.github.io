@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Clay Linear Gradient -->
+    <linearGradient id="clayGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+    
+    <!-- Top Light Specular Radial Gradient -->
+    <radialGradient id="topLit" cx="50%" cy="0%" r="85%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5" />
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Text Surface Gradient -->
+    <linearGradient id="textLit" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E0E7FF" />
+    </linearGradient>
+
+    <!-- Soft Ambient Drop Shadow -->
+    <filter id="ambientShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#1E1B4B" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Solid 3D Base Contact Shadow (Depth) -->
+  <rect x="12" y="52" width="488" height="444" rx="124" fill="#1D4ED8" />
+  <rect x="12" y="60" width="488" height="432" rx="124" fill="#1E1B4B" opacity="0.35" />
+
+  <!-- Main Inflated Clay Body (Full-bleed edge to edge) -->
+  <rect x="12" y="12" width="488" height="444" rx="124" fill="url(#clayGradient)" filter="url(#ambientShadow)" />
+  
+  <!-- Top Surface Radial Highlight -->
+  <rect x="12" y="12" width="488" height="444" rx="124" fill="url(#topLit)" />
+
+  <!-- Inner Top Rim Specular Highlight -->
+  <rect x="14" y="14" width="484" height="440" rx="122" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-opacity="0.6" />
+
+  <!-- Monogram Bold Sans-Serif 3D Shadow -->
+  <text x="256" y="258" 
+        font-family="Arial, 'Segoe UI', 'Helvetica Neue', sans-serif" 
+        font-weight="900" 
+        font-size="240" 
+        letter-spacing="-3" 
+        text-anchor="middle" 
+        dominant-baseline="central" 
+        fill="#1D4ED8">RH</text>
+
+  <!-- Monogram Bold Sans-Serif Front Surface -->
+  <text x="256" y="240" 
+        font-family="Arial, 'Segoe UI', 'Helvetica Neue', sans-serif" 
+        font-weight="900" 
+        font-size="240" 
+        letter-spacing="-3" 
+        text-anchor="middle" 
+        dominant-baseline="central" 
+        fill="url(#textLit)">RH</text>
+</svg>
