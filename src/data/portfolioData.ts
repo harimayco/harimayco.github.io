@@ -115,7 +115,7 @@ export const PROJECTS_DATA: Project[] = [
     category: 'tools',
     tags: ['WebAssembly', 'Ghostscript WASM', 'React', 'Open Source', 'PDF Tools', 'Client-Side'],
     image: 'img/pdfactions.png',
-    demoUrl: 'https://harimayco.github.io/PDFActions/',
+    demoUrl: 'https://harimayco.runs-on.dev/PDFActions/',
     githubUrl: 'https://github.com/harimayco/PDFActions',
     featured: true
   },
@@ -128,7 +128,7 @@ export const PROJECTS_DATA: Project[] = [
     category: 'tools',
     tags: ['HTML5 Canvas', 'JavaScript', 'Gaming', 'CSS3', 'Image Processing'],
     image: 'img/aov.png',
-    demoUrl: 'https://harimayco.github.io/aov_wallpaper_generator/',
+    demoUrl: 'https://harimayco.runs-on.dev/aov_wallpaper_generator/',
     githubUrl: 'https://github.com/harimayco/aov_wallpaper_generator',
     featured: true
   },

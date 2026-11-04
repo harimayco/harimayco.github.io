@@ -32,7 +32,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
       playClayClick('pop')
       onShowToast('Thank you! Opening your email client to complete transmission.')
       // Open client's email client as mailto with subject & body prefilled
-      const subject = encodeURIComponent(`Inquiry from ${formState.name} via harimayco.github.io`)
+      const subject = encodeURIComponent(`Inquiry from ${formState.name} via harimayco.runs-on.dev`)
       const body = encodeURIComponent(`${formState.message}\n\nSender: ${formState.name} (${formState.email})`)
       window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`
       setFormState({ name: '', email: '', message: '' })

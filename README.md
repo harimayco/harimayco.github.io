@@ -26,21 +26,25 @@ Modern personal portfolio & curriculum vitae website for **Rendy Harimayco** (Se
 ## 🛠️ Local Development
 
 ### 1. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 2. Start Local Dev Server
+
 ```bash
 npm run dev
 ```
 
 ### 3. Build for Production
+
 ```bash
 npm run build
 ```
 
 ### 4. Preview Production Build Locally
+
 ```bash
 npm run preview
 ```
@@ -52,11 +56,12 @@ npm run preview
 This repository is configured with an automated GitHub Actions workflow at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
 When changes are pushed to the `master` branch:
+
 1. GitHub Actions checks out the repository.
 2. Dependencies are installed and the app is compiled with `npm run build`.
-3. The production bundle (`dist/`) is automatically deployed to `https://harimayco.github.io/`.
+3. The production bundle (`dist/`) is automatically deployed to `https://harimayco.runs-on.dev/`.
 
-*Ensure in repository settings under **Settings -> Pages** that **Source** is set to **GitHub Actions**.*
+_Ensure in repository settings under **Settings -> Pages** that **Source** is set to **GitHub Actions**._
 
 ---
 

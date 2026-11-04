@@ -3,4 +3,4 @@ Allow: /
 Allow: /PDFActions/
 Allow: /aov_wallpaper_generator/
 
-Sitemap: https://harimayco.github.io/sitemap.xml
+Sitemap: https://harimayco.runs-on.dev/sitemap.xml
